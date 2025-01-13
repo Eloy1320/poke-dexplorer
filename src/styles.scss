@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+
+html,body{
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+    margin: 0;
+}
+
+/*START Custom navbar */
+p-menubar{
+    --p-menubar-border-radius: 0;
+}
+
+.p-menubar{
+    border: 0px !important;
+    border-bottom: 1px solid var(--p-menubar-border-color) !important;
+}
+
+/*END Custom navbar */

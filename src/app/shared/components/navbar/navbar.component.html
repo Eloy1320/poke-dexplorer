@@ -1,0 +1,23 @@
+<p-menubar>
+
+    <ng-template #start>
+        <img class="logo-custom" width="200" src="assets/img/poke-dexplorer-logo.png" alt="Logo PokeDexplorer">
+    </ng-template>
+
+    <ng-template #end>
+        
+        <div class="grid grid-nogutter">
+            <div class="col mr-1 ml-1 mt-1">
+                <div class="text-center"><p-button icon="pi pi-sun"  variant="outlined" severity="secondary" /></div>
+            </div>
+            <div class="col mr-1 ml-1 mt-1">
+                <div class="text-center"><p-button icon="pi pi-github"  variant="outlined" severity="secondary" /></div>
+            </div>
+            <div class="col mr-1 ml-1 mt-1">
+                <div class="text-center "><p-select  dropdownIcon="pi pi-language" [options]="lenguaje" optionLabel="name" placeholder="Idioma" /></div>
+            </div>
+        </div>
+
+    </ng-template>
+
+</p-menubar>
