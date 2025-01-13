@@ -1,0 +1,13 @@
+
+.logo-custom{
+
+    @media (max-width: 768px) {
+        width: 100px;
+    }
+
+    @media (min-width: 767px) {
+        width: 200px;
+    }
+
+}
+
