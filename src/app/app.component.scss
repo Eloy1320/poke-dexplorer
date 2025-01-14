@@ -1,4 +1,11 @@
-
-.container-layout{
-    margin: 8;
+.container-content {
+    margin: 10px;
+    flex: 1;
 }
+
+.container-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
