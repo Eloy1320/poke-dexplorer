@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { LocalStorageService } from '@app/services/local-storage.service';
-import { Theme } from '@app/interfaces/local-storage.interface';
-import { ThemeIcon } from '@app/interfaces/navbar.interface';
+import { LanguageLocal, Theme } from '@app/interfaces/local-storage.interface';
+import { LanguageNavBar, ThemeIcon } from '@app/interfaces/navbar.interface';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-navbar',
@@ -17,65 +19,47 @@ import { ThemeIcon } from '@app/interfaces/navbar.interface';
     MenubarModule,
     ButtonModule,
     SelectModule,
-    AvatarModule
+    TranslateModule,
+    FormsModule
   ],
 })
 export class NavbarComponent {
 
-  items: MenuItem[] | undefined;
-  lenguaje:any;
+  translate: TranslateService = inject(TranslateService);
+  language!:LanguageNavBar[];
   themeIcon:ThemeIcon = "pi pi-sun";
+  selectedLanguage!:LanguageNavBar;
 
+  currentLanguage!: LanguageLocal;
   private currentTheme!: Theme;
 
   constructor(
     private localStorageService:LocalStorageService
   ){
-
+    
   }
 
   ngOnInit() {
 
     this.currentTheme = this.localStorageService.getTheme();
-    console.log(this.currentTheme)
     if(this.currentTheme == 'dark'){
       this.initializeTheme();
     }
 
-    this.lenguaje = [
-      { name: 'Ingles'},
-      { name: 'Español'},
-  ];
+    this.currentLanguage = this.localStorageService.getLanguage();
+    if(this.currentLanguage != 'es'){
+      this.initializeLanguage();
+      this.selectedLanguage = { value: 'en', label: 'English' }
+    }else{
+      this.selectedLanguage = { value: 'es', label: 'Español' }
+    }
 
-    this.items =[
-      {
-        label: 'File',
-        items: [
-          { label: 'New', icon: 'pi pi-fw pi-plus' },
-          { label: 'Open', icon: 'pi pi-fw pi-folder-open' },
-        ],
-      },
-      {
-        label: 'Edit',
-        items: [
-          { label: 'Undo', icon: 'pi pi-fw pi-undo' },
-          { label: 'Redo', icon: 'pi pi-fw pi-repeat' },
-        ],
-      },
-      {
-        separator: true, // Línea separadora opcional
-      },
-      {
-        label: '',
-        icon: 'pi pi-fw pi-ellipsis-v',
-        items: [
-          { label: 'Option 1' },
-          { label: 'Option 2' },
-          { label: 'Option 3' },
-        ],
-      },
+    this.language =  [
+      { value: 'en', label: 'English' },
+      { value: 'es', label: 'Español' }
     ];
-}
+  
+  }
 
   toggleDarkMode() {
     const element = document.querySelector('html');
@@ -93,6 +77,16 @@ export class NavbarComponent {
       element.classList.toggle('my-app-dark');
       this.themeIcon = "pi pi-moon"
     }
+  }
+
+  private initializeLanguage(){
+    this.translate.use(this.currentLanguage);
+  }
+
+  changeLanguage(){
+    this.translate.use(this.selectedLanguage.value);
+    this.currentLanguage = this.selectedLanguage.value;
+    this.localStorageService.setLanguage(this.currentLanguage);
   }
 
   handleGitHubBtn(){

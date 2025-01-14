@@ -1,8 +1,8 @@
 export type Theme = 'light' | 'dark';
 
-export type Language  = 'es' | 'en';
+export type LanguageLocal  = 'es' | 'en';
 
 export interface AppSettings {
     theme: Theme;
-    language: Language;
+    language: LanguageLocal;
 }

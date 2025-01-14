@@ -4,8 +4,7 @@
         <img class="logo-custom" width="200" src="assets/img/poke-dexplorer-logo.png" alt="Logo PokeDexplorer">
     </ng-template>
 
-    <ng-template #end>
-        
+    <ng-template #end>  
         <div class="grid grid-nogutter">
             <div class="col mr-1 ml-1 mt-1">
                 <div class="text-center">
@@ -19,11 +18,10 @@
             </div>
             <div class="col mr-1 ml-1 mt-1">
                 <div class="text-center ">
-                    <p-select  dropdownIcon="pi pi-language" [options]="lenguaje" optionLabel="name" placeholder="Idioma" />
+                    <p-select [(ngModel)]="selectedLanguage" (onChange)="changeLanguage()"  dropdownIcon="pi pi-language" [options]="language" optionLabel="label" placeholder="Idioma" />
                 </div>
             </div>
         </div>
-
     </ng-template>
 
 </p-menubar>
