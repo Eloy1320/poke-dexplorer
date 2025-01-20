@@ -8,6 +8,9 @@ import { LanguageLocal, Theme } from '@app/interfaces/local-storage.interface';
 import { LanguageNavBar, ThemeIcon } from '@app/interfaces/navbar.interface';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ROUTER_VALUES } from 'src/utils/constants/constants';
+
 
 
 @Component({
@@ -34,7 +37,8 @@ export class NavbarComponent {
   private currentTheme!: Theme;
 
   constructor(
-    private localStorageService:LocalStorageService
+    private localStorageService:LocalStorageService,
+    private router:Router
   ){
     
   }
@@ -55,8 +59,8 @@ export class NavbarComponent {
     }
 
     this.language =  [
-      { value: 'en', label: 'English' },
-      { value: 'es', label: 'Español' }
+      { value: 'es', label: 'Español' },
+      { value: 'en', label: 'English' }
     ];
   
   }
@@ -91,6 +95,10 @@ export class NavbarComponent {
 
   handleGitHubBtn(){
     window.open('https://github.com/Eloy1320/poke-dexplorer', '_blank');
+  }
+
+  onClickLogo(){
+    this.router.navigate([ROUTER_VALUES.HOME])
   }
 
 }

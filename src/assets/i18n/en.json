@@ -1,4 +1,6 @@
 {
     "hello": "Hello World",
-    "created": "Created By"
+    "created": "Created By",
+    "search": "Search",
+    "loadPokemon": "Load more Pokemon"
 }

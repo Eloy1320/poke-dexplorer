@@ -1,4 +1,6 @@
 {
     "hello": "Hola Mundo",
-    "created": "Creado por"
+    "created": "Creado por",
+    "search": "Buscar",
+    "loadPokemon": "Cargar más Pokémon"
 }
