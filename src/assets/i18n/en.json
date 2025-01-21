@@ -2,5 +2,6 @@
     "hello": "Hello World",
     "created": "Created By",
     "search": "Search",
-    "loadPokemon": "Load more Pokemon"
+    "loadPokemon": "Load more Pokemon",
+    "not-found": "No results found..."
 }

@@ -11,7 +11,7 @@ export class PokemonApiService {
 
   constructor(private http:HttpClient) { }
 
-  getDetailPokemon(id:number): Observable<any>{
+  getDetailPokemon(id:any): Observable<any>{
     return this.http.get<any>(BASE_API_POKE + `pokemon/${id}`);
   }
 
@@ -19,8 +19,12 @@ export class PokemonApiService {
     return this.http.get<any>(url);
   }
 
-  getColorPokemon(id:number): Observable<PokemonSpecies>{
+  getColorPokemon(id:any): Observable<PokemonSpecies>{
     return this.http.get<PokemonSpecies>(BASE_API_POKE + `pokemon-species/${id}`);
+  }
+
+  getPokemonList(limit:number = 12){
+    return this.http.get(BASE_API_POKE + `pokemon?limit=${limit}`); 
   }
 
 }
