@@ -21,27 +21,27 @@
 
         @for (poke of this.pokeCardList; track poke.id) {
 
-            <div class="col-12 md:col-4 lg:col-3">
+            <div class="col-12 md:col-4 lg:col-3 fadein animation-duration-1000">
                 <div class="flex justify-content-center">
-                <p-card
-                    [style]="{ width: '15rem', overflow: 'hidden', textAlign: 'center' }"
+                <p-card (click)="handleCardPoke(poke.id)"
+                    [style]="{ width: '15rem', overflow: 'hidden', textAlign: 'center', cursor: 'pointer' }"
                 >
                     <ng-template #header>
-                    <div class="container-img-pokemon" [style]="poke.color">
-                        @if(poke.pokeSprite){
-                        <img [alt]="poke.name" [src]="poke.pokeSprite" />
-                        }@else {
-                        <img alt="Pokemon 404" src="assets/img/poke-not-found.png" />
-                        }
-                    </div>
+                        <div class="container-img-pokemon" [style]="poke.color">
+                            @if(poke.pokeSprite){
+                                <img [alt]="poke.name" [src]="poke.pokeSprite" />
+                            }@else {
+                                <img alt="Pokemon 404" src="assets/img/poke-not-found.png" />
+                            }
+                        </div>
                     </ng-template>
                     <ng-template #title> {{ poke.name | titlecase }} </ng-template>
                     <ng-template #subtitle>
-                    # {{ "0000" + poke.id | slice : -4 }}
+                        #{{ "0000" + poke.id | slice : -4 }}
                     </ng-template>
                     <img [src]="poke.firstTypeSprite" />
                     @if(poke.secondTypeSprite){
-                    <img [src]="poke.secondTypeSprite" />
+                        <img [src]="poke.secondTypeSprite" />
                     }
                 </p-card>
                 </div>

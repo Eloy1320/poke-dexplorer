@@ -5,6 +5,7 @@ export const LOCAL_STORAGE_KEYS = {
 
 export const ROUTER_VALUES = {
     HOME: 'home',
+    DETAIL: 'detail'
 };
 
 export const BASE_API_POKE = 'https://pokeapi.co/api/v2/';

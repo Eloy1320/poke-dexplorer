@@ -6,12 +6,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { forkJoin, map, switchMap } from 'rxjs';
-import { POKEMON_COLORS } from 'src/utils/constants/constants';
+import { POKEMON_COLORS, ROUTER_VALUES } from 'src/utils/constants/constants';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,10 @@ export class HomeComponent {
   showSpinner: boolean = true;
   isDisabledLoadPokemonBtn: boolean = false;
 
-  constructor(private pokemonApiService: PokemonApiService) {}
+  constructor(
+    private pokemonApiService: PokemonApiService,
+    private router:Router
+  ) {}
 
   ngOnInit() {
     this.loadPokemonCardList();
@@ -229,4 +233,10 @@ export class HomeComponent {
       },
     });
   }
+
+  handleCardPoke(id:number){
+    this.router.navigate([ROUTER_VALUES.DETAIL, id]);
+
+  }
+
 }
