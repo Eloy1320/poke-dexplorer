@@ -1,6 +1,6 @@
 <div class="detail-container fadein animation-duration-500">
     
-    <div class="grid grid-nogutter">
+    <div class="grid">
 
         <div class="col-12 md:col-6 lg:col-6">
             <div class="flex flex-column justify-content-center text-center">
@@ -18,15 +18,85 @@
             </div>
         </div>
 
-        <div class="col-12 md:col-6 lg:col-6">
-            derecha
-        </div>
-
+        <div class="col-12 md:col-6 lg:col-6 flex align-items-center justify-content-center">
+            <div class="flex flex-column justify-content-center text-justify">
+                <span class="align-items-center justify-content-center">
+                    A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol.
+                </span>
+            
+                <div class="grid mt-5 align-items-center justify-content-center">
+                    <div class="col-3">
+                        <span class="stat-text">PS</span>
+                    </div>
+                    <div class="col-9">
+                        <p-progressBar [value]="getStatPercentage(200)" [showValue]="false">
+                            <ng-template #content let-value>
+                                <span>200</span>
+                            </ng-template>
+                        </p-progressBar>
+                    </div>
+                    <div class="col-3">
+                        <span class="stat-text">Ataque</span>
+                    </div>
+                    <div class="col-9">
+                        <p-progressBar [value]="getStatPercentage(200)" [showValue]="false">
+                            <ng-template #content let-value>
+                                <span>200</span>
+                            </ng-template>
+                        </p-progressBar>
+                    </div>
+                    <div class="col-3">
+                        <span class="stat-text">Defensa</span>
+                    </div>
+                    <div class="col-9">
+                        <p-progressBar [value]="getStatPercentage(200)" [showValue]="false">
+                            <ng-template #content let-value>
+                                <span>200</span>
+                            </ng-template>
+                        </p-progressBar>
+                    </div>
+                    <div class="col-3">
+                        <span class="stat-text">Ataque Especial</span>
+                    </div>
+                    <div class="col-9">
+                        <p-progressBar [value]="getStatPercentage(200)" [showValue]="false">
+                            <ng-template #content let-value>
+                                <span>200</span>
+                            </ng-template>
+                        </p-progressBar>
+                    </div>
+                    <div class="col-3">
+                        <span class="stat-text">Defensa Especial</span>
+                    </div>
+                    <div class="col-9">
+                        <p-progressBar [value]="getStatPercentage(200)" [showValue]="false">
+                            <ng-template #content let-value>
+                                <span>200</span>
+                            </ng-template>
+                        </p-progressBar>
+                    </div>
+                    <div class="col-3">
+                        <span class="stat-text">Velocidad</span>
+                    </div>
+                    <div class="col-9">
+                        <p-progressBar [value]="getStatPercentage(255)" [showValue]="false">
+                            <ng-template #content let-value>
+                                <span>255</span>
+                            </ng-template>
+                        </p-progressBar>
+                    </div>
+                </div>
+                </div>
+            </div>
     </div>
 
     <div class="grid mt-5">
-        <div class="col-6 text-left">Anterior</div>
-        <div class="col-6 text-right">Siguiente</div>
+        <div class="col-6 text-left">
+            <p-button label="Anterior" [link]="true" />
+        </div>
+        <div class="col-6 text-right">
+            <p-button label="Siguiente" [link]="true" />
+        </div>
     </div>
 
 </div>

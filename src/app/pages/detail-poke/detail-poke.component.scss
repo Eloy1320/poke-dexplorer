@@ -16,3 +16,14 @@
     font-size: 1.10rem;
     color: var(--p-text-muted-color);
 }
+
+.stat-text{
+
+    @media screen and (max-width: 768px) {
+        font-size: 0.80rem;
+    }
+
+
+    font-size: 1.10rem;
+
+}

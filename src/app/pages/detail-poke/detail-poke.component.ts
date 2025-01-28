@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-detail-poke',
   templateUrl: './detail-poke.component.html',
   styleUrl: './detail-poke.component.scss',
   standalone: true,
-  imports: [CardModule],
+  imports: [
+    CardModule,
+    ProgressBarModule,
+    ButtonModule
+  ],
 })
 export class DetailPokeComponent {
 
@@ -33,6 +39,11 @@ export class DetailPokeComponent {
 
     });
 
+  }
+
+  getStatPercentage(value: number): number {
+    const maxStatValue = 255;
+    return (value / maxStatValue) * 100;
   }
 
 }
