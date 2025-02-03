@@ -39,9 +39,9 @@
                     <ng-template #subtitle>
                         #{{ "0000" + poke.id | slice : -4 }}
                     </ng-template>
-                    <img [src]="poke.firstTypeSprite" />
+                    <img [src]="poke.firstTypeSprite" alt="type 1 pokemon" />
                     @if(poke.secondTypeSprite){
-                        <img [src]="poke.secondTypeSprite" />
+                        <img [src]="poke.secondTypeSprite" alt="type 2 pokemon" />
                     }
                 </p-card>
                 </div>

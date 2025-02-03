@@ -19,7 +19,7 @@ export class PokemonApiService {
     return this.http.get<any>(url);
   }
 
-  getColorPokemon(id:any): Observable<PokemonSpecies>{
+  getSpeciesPokemon(id:any): Observable<PokemonSpecies>{
     return this.http.get<PokemonSpecies>(BASE_API_POKE + `pokemon-species/${id}`);
   }
 

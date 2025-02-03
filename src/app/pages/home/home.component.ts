@@ -80,7 +80,7 @@ export class HomeComponent {
           }),
           switchMap((response2) => {
             tempJsonList.type = response2;
-            return this.pokemonApiService.getColorPokemon(index);
+            return this.pokemonApiService.getSpeciesPokemon(index);
           }),
           map((response3) => {
             tempJsonList.color = response3;
@@ -91,7 +91,7 @@ export class HomeComponent {
       observables.push(tempObservable);
     }
 
-    forkJoin(observables).subscribe({
+    let subscribeTemp = forkJoin(observables).subscribe({
       next: (finalResults) => {
         finalResults.forEach((final) => {
           let codigoColor = final.color.color
@@ -119,6 +119,7 @@ export class HomeComponent {
         this.showSpinner = false;
         this.isDisabledLoadPokemonBtn = false;
         console.error('Error occurred:', err);
+        subscribeTemp.unsubscribe();
       },
       complete: () => {
         this.showSpinner = false;
@@ -126,6 +127,7 @@ export class HomeComponent {
         this.i = this.i + 12;
         this.limit = this.limit + 12;
         this.pokeCardList.sort((a, b) => a.id - b.id);
+        subscribeTemp.unsubscribe();
       },
     });
   }

@@ -3,5 +3,13 @@
     "created": "Creado por",
     "search": "Buscar",
     "loadPokemon": "Cargar más Pokémon",
-    "not-found": "No se encontraron resultados..."
+    "not-found": "No se encontraron resultados...",
+    "stat-hp": "ps",
+    "stat-attack": "ataque",
+    "stat-defense": "defensa",
+    "stat-special-attack": "ataque especial",
+    "stat-special-defense": "defensa especial",
+    "stat-speed": "velocidad",
+    "previous": "anterior",
+    "next": "siguiente"
 }
