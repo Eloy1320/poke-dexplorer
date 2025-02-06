@@ -5,21 +5,15 @@
     </ng-template>
 
     <ng-template #end>  
-        <div class="grid grid-nogutter">
-            <div class="col mr-1 ml-1 mt-1">
-                <div class="text-center">
-                    <p-button [icon]="themeIcon" (onClick)="toggleDarkMode()" variant="outlined" severity="secondary" />
-                </div>
+        <div class="flex flex-row gap-1 md:gap-2">
+            <div>
+                <p-select [(ngModel)]="selectedLanguage" (onChange)="changeLanguage()" size="small"  dropdownIcon="pi pi-language" [options]="language" optionLabel="label" />
             </div>
-            <div class="col mr-1 ml-1 mt-1">
-                <div class="text-center">
-                    <p-button icon="pi pi-github" (onClick)="handleGitHubBtn()" variant="outlined" severity="secondary" />
-                </div>
+            <div class="">
+                <p-button [icon]="themeIcon" (onClick)="toggleDarkMode()" variant="outlined" severity="secondary" />
             </div>
-            <div class="col mr-1 ml-1 mt-1">
-                <div class="text-center ">
-                    <p-select [(ngModel)]="selectedLanguage" (onChange)="changeLanguage()"  dropdownIcon="pi pi-language" [options]="language" optionLabel="label" placeholder="Idioma" />
-                </div>
+            <div class="">
+                <p-button icon="pi pi-github" (onClick)="handleGitHubBtn()" variant="outlined" severity="secondary" />
             </div>
         </div>
     </ng-template>
