@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
@@ -11,8 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTER_VALUES } from 'src/utils/constants/constants';
 import { LanguageService } from '@app/services/language.service';
-
-
 
 @Component({
   selector: 'app-navbar',

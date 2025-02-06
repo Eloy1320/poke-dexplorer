@@ -23,7 +23,8 @@
         font-size: 0.80rem;
     }
 
-
-    font-size: 1.10rem;
+    @media (min-width: 767px) {
+        font-size: 1.10rem;
+    }
 
 }
