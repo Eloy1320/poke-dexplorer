@@ -1,5 +1,5 @@
 
-@if(pokeDetailView && showSpinner == false){
+@if(pokeDetailView && showSpinner == false && showErroMessage == false){
 
     <div class="detail-container fadein animation-duration-500">
     
@@ -23,8 +23,8 @@
                         }
                     </div>
                     <div>
-                        <span class="custom-subtitle">Peso: {{this.pokeDetailView.weight | number:'1.1-1' }}kg </span>
-                        <span class="custom-subtitle">Altura: {{this.pokeDetailView.height | number:'1.2-2'}}m</span>
+                        <span class="custom-subtitle">{{'weight' | translate | titlecase}}: {{this.pokeDetailView.weight | number:'1.1-1' }}kg </span>
+                        <span class="custom-subtitle">{{'height' | translate | titlecase}}: {{this.pokeDetailView.height | number:'1.2-2'}}m</span>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,22 @@
             <div class="col-12 md:col-6 lg:col-6 flex align-items-center justify-content-center">
                 <div class="flex flex-column justify-content-center text-justify">
                     <span class="align-items-center justify-content-center">
-                        A Bulbasaur es fácil verle echándose una siesta al sol. La semilla que tiene en el lomo va creciendo cada vez más a medida que absorbe los rayos del sol.
+
+                        @if(this.pokeDetailView.description.esText != "" || this.pokeDetailView.description.enText != ""){
+
+                            @switch (currenLang) {
+                                @case ("es") {
+                                    {{ this.pokeDetailView.description.esText }}
+                                }
+                                @case ("en") {
+                                    {{ this.pokeDetailView.description.enText }}
+                                }
+                            }
+
+                        }@else {
+                            {{'pokemon-details-unavailable' | translate | titlecase }}
+                        }
+
                     </span>
                 
                     <div class="grid mt-5 align-items-center justify-content-center">
@@ -104,12 +119,12 @@
         <div class="grid mt-5">
             <div class="col-6 text-left">
                 @if(this.idPoke > 1){
-                    <p-button [label]="'previous' | translate | titlecase" [link]="true" />
+                    <p-button (onClick)="handleClickPrevious()" [label]="'previous' | translate | titlecase" [link]="true" />
                 }
             </div>
             <div class="col-6 text-right">
                 @if(this.idPoke <= this.maxPokemon){
-                    <p-button [label]="'next' | translate | titlecase" [link]="true" />
+                    <p-button (onClick)="handleClickNext()" [label]="'next' | translate | titlecase" [link]="true" />
                 }
             </div>
         </div>
@@ -118,8 +133,25 @@
 
 }
 
-@if(showSpinner){
+@if(showSpinner && showErroMessage == false){
     <div class="flex justify-content-center mt-3">
         <p-progress-spinner ariaLabel="loading"></p-progress-spinner>
     </div>
+}
+
+
+@if(showErroMessage && showSpinner == false){
+    
+    <div class="col-12">
+        <div class="flex justify-content-center">
+            <p-card [header]="'pokemon-details-unavailable' | translate | titlecase">
+                <ng-template #footer>
+                    <a style="width: 100%; text-decoration: none;" routerLink="/home" class="p-button font-bold">
+                        {{'go-home' | translate | titlecase}}
+                    </a>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+
 }

@@ -7,7 +7,10 @@ export interface PokeDetailView {
     height: number,
     firstTypeSprite:string
     secondTypeSprite?:string
-    description:{},
+    description:{
+        "esText": string,
+        "enText": string
+    },
     stats:{
         "hp":number,
         "attack": number,

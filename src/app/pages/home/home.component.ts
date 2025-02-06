@@ -13,6 +13,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common'
 
 @Component({
   selector: 'app-home',
@@ -30,6 +31,7 @@ import { Router } from '@angular/router';
     FormsModule,
     InputGroupModule,
     InputGroupAddonModule,
+    NgOptimizedImage
   ],
 })
 export class HomeComponent {
@@ -142,7 +144,7 @@ export class HomeComponent {
       let filteredPokemonList = this.pokeListSearch.filter(
         (pokemon: { name: string }) =>
           pokemon.name.toLowerCase().includes(this.searchPokemon.toLowerCase())
-      );
+      ).slice(0, 32);
 
       console.log(filteredPokemonList);
       this.loadPokemonSearchCardList(filteredPokemonList);

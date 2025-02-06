@@ -11,5 +11,9 @@
     "stat-special-defense": "defensa especial",
     "stat-speed": "velocidad",
     "previous": "anterior",
-    "next": "siguiente"
+    "next": "siguiente",
+    "weight": "peso",
+    "height": "altura",
+    "pokemon-details-unavailable": "detalles del Pokémon no disponibles",
+    "go-home": "Ir al Inicio"
 }

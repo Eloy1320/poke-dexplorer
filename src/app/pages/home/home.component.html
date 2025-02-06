@@ -29,7 +29,7 @@
                     <ng-template #header>
                         <div class="container-img-pokemon" [style]="poke.color">
                             @if(poke.pokeSprite){
-                                <img [alt]="poke.name" [src]="poke.pokeSprite" />
+                                <img width="150" height="150" [alt]="poke.name" ngSrc="{{poke.pokeSprite}}"/>
                             }@else {
                                 <img alt="Pokemon 404" src="assets/img/poke-not-found.png" />
                             }

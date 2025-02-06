@@ -10,6 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTER_VALUES } from 'src/utils/constants/constants';
+import { LanguageService } from '@app/services/language.service';
 
 
 
@@ -38,7 +39,8 @@ export class NavbarComponent {
 
   constructor(
     private localStorageService:LocalStorageService,
-    private router:Router
+    private router:Router,
+    private languageService: LanguageService
   ){
     
   }
@@ -84,11 +86,11 @@ export class NavbarComponent {
   }
 
   private initializeLanguage(){
-    this.translate.use(this.currentLanguage);
+    this.languageService.setLanguage(this.currentLanguage);
   }
 
   changeLanguage(){
-    this.translate.use(this.selectedLanguage.value);
+    this.languageService.setLanguage(this.selectedLanguage.value);
     this.currentLanguage = this.selectedLanguage.value;
     this.localStorageService.setLanguage(this.currentLanguage);
   }

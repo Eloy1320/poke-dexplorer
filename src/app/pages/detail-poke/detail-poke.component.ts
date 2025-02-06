@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ButtonModule } from 'primeng/button';
 import { PokemonApiService } from '@app/services/pokemon-api.service';
-import { forkJoin, map, switchMap } from 'rxjs';
+import { forkJoin, map, Subscription, switchMap } from 'rxjs';
 import { PokeDetailView } from '@app/interfaces/detail-poke.interface';
 import { DecimalPipe, TitleCasePipe, SlicePipe, UpperCasePipe } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TranslateModule } from '@ngx-translate/core';
+import { ROUTER_VALUES } from 'src/utils/constants/constants';
+import { LanguageService } from '@app/services/language.service';
+import { RouterModule } from '@angular/router';
+import { LocalStorageService } from '@app/services/local-storage.service';
 
 
 @Component({
@@ -25,10 +29,11 @@ import { TranslateModule } from '@ngx-translate/core';
     TitleCasePipe,
     SlicePipe,
     UpperCasePipe,
-    TranslateModule
+    TranslateModule,
+    RouterModule
   ],
 })
-export class DetailPokeComponent {
+export class DetailPokeComponent implements OnDestroy  {
 
   idPoke!:number;
 
@@ -38,21 +43,37 @@ export class DetailPokeComponent {
 
   maxPokemon!:number;
 
+  showErroMessage:boolean = false;
+
+  private langSubscription!: Subscription;
+  
+  currenLang!:string;
+
   constructor(
       private route: ActivatedRoute,
       private router: Router,
       private pokemonApiService: PokemonApiService,
+      private languageService: LanguageService,
+      private localStorageService: LocalStorageService
     ){
 
   }
 
   ngOnInit(){
+
+    this.currenLang = this.localStorageService.getLanguage();
+
+    this.langSubscription = this.languageService.languageChange$.subscribe(lang => {
+      this.currenLang = lang;
+    });
     
     this.route.paramMap.subscribe(params => {
       let tempId = params.get('id') || '';
       
       if (!tempId || isNaN(Number(tempId))) {
         console.log("id no valido", Number(tempId));
+        this.showSpinner = false;
+        this.showErroMessage = true;
       }else{
         this.idPoke = Number(tempId);
         this.loadMaxPokemon();
@@ -61,7 +82,10 @@ export class DetailPokeComponent {
 
     });
 
+  }
 
+  ngOnDestroy() {
+    this.langSubscription.unsubscribe();
   }
 
   private loadPokemonDetail(id:number){
@@ -108,9 +132,11 @@ export class DetailPokeComponent {
             const englishText = final.species.flavor_text_entries.find((item: { language: { name: string; }; }) => item.language.name === "en");
 
             let flavortText: any  = { 
-              esText: spanishText.flavor_text,
-              enText: englishText.flavor_text,
+              esText: spanishText == undefined ? "" : spanishText.flavor_text,
+              enText: englishText == undefined ? "" : englishText.flavor_text
             }
+
+            flavortText.enText = flavortText.enText.replace(/[\x00-\x1F\x7F]/g, '').replace(/\s+/g, ' ').trim();
 
             this.pokeDetailView = {
               id: this.idPoke,
@@ -136,6 +162,7 @@ export class DetailPokeComponent {
           error: (err) => {
             console.error('Error occurred:', err);
             this.showSpinner = false;
+            this.showErroMessage = true;
             subscribeTemp.unsubscribe();
           },
           complete: () => {
@@ -157,7 +184,6 @@ export class DetailPokeComponent {
         subscribeTemp.unsubscribe();
       },
       complete: () => {
-        this.showSpinner = false;
         subscribeTemp.unsubscribe();
       },
     });
@@ -181,6 +207,14 @@ export class DetailPokeComponent {
     return Number(
       Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals
     );
+  }
+
+  handleClickPrevious(){
+    this.router.navigate([ROUTER_VALUES.DETAIL, this.idPoke - 1]);
+  }
+
+  handleClickNext(){
+    this.router.navigate([ROUTER_VALUES.DETAIL, this.idPoke + 1]);
   }
 
 }

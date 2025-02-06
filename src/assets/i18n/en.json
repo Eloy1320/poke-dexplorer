@@ -11,6 +11,9 @@
     "stat-special-defense": "special defense",
     "stat-speed": "speed",
     "previous": "previous",
-    "next": "next"
-    
+    "next": "next",
+    "weight": "weight",
+    "height": "height",
+    "pokemon-details-unavailable": "pokemon details not available",
+    "go-home": "Go to Home"
 }
