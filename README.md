@@ -72,4 +72,5 @@ La aplicación definitiva para explorar y descubrir información detallada sobre
 
 ```bash
 git clone https://github.com/Eloy1320/poke-dexplorer.git
+npm install
 ng serve
