@@ -1,0 +1,19 @@
+{
+    "hello": "Hello World",
+    "created": "Created By",
+    "search": "Search",
+    "loadPokemon": "Load more Pokemon",
+    "not-found": "No results found...",
+    "stat-hp": "hp",
+    "stat-attack": "attack",
+    "stat-defense": "defense",
+    "stat-special-attack": "special attack",
+    "stat-special-defense": "special defense",
+    "stat-speed": "speed",
+    "previous": "previous",
+    "next": "next",
+    "weight": "weight",
+    "height": "height",
+    "pokemon-details-unavailable": "pokemon details not available",
+    "go-home": "Go to Home"
+}
