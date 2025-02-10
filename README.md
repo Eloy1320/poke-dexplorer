@@ -56,6 +56,7 @@ La aplicación definitiva para explorar y descubrir información detallada sobre
 
   
 
+![image](https://github.com/user-attachments/assets/d402fc27-8628-48e4-82ab-73645a878d01)
 
   
 
