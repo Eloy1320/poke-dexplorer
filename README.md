@@ -66,9 +66,6 @@ La aplicación definitiva para explorar y descubrir información detallada sobre
 
 ## ⚙️ Instalación
 
-  
-
-1. Clona el repositorio
 
 ```bash
 git clone https://github.com/Eloy1320/poke-dexplorer.git
